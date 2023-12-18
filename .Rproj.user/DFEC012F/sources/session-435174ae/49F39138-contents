@@ -1,0 +1,89 @@
+library(shiny)
+library(ggplot2)
+
+# Custom Scatter Plot Gadget
+customScatterGadget <- function() {
+  shinyApp(
+    ui = fluidPage(
+      titlePanel("Custom Scatter Plot Gadget"),
+      sidebarLayout(
+        sidebarPanel(
+          # Add any parameters you want to customize here
+          sliderInput("size", "Point Size", min = 1, max = 10, value = 3)
+        ),
+        mainPanel(
+          plotOutput("scatterPlot")
+        )
+      )
+    ),
+    server = function(input, output) {
+      output$scatterPlot <- renderPlot({
+        # Generate sample data (replace with your own data)
+        set.seed(123)
+        data <- data.frame(x = rnorm(100), y = rnorm(100))
+
+        # Create custom scatter plot
+        customScatterPlot(x = data$x, y = data$y, size = input$size)
+      })
+    }
+  )
+}
+
+# Custom Bar Plot Gadget
+customBarGadget <- function() {
+  shinyApp(
+    ui = fluidPage(
+      titlePanel("Custom Bar Plot Gadget"),
+      sidebarLayout(
+        sidebarPanel(
+          # Add any parameters you want to customize here
+          selectInput("fill", "Bar Fill Color", choices = c("darkgreen", "blue", "red"), selected = "darkgreen")
+        ),
+        mainPanel(
+          plotOutput("barPlot")
+        )
+      )
+    ),
+    server = function(input, output) {
+      output$barPlot <- renderPlot({
+        # Generate sample data (replace with your own data)
+        data_bar <- data.frame(category = letters[1:5], value = c(3, 7, 2, 5, 9))
+
+        # Create custom bar plot
+        customBarPlot(x = data_bar$category, y = data_bar$value, fill = input$fill)
+      })
+    }
+  )
+}
+
+# Custom Line Plot Gadget
+customLineGadget <- function() {
+  shinyApp(
+    ui = fluidPage(
+      titlePanel("Custom Line Plot Gadget"),
+      sidebarLayout(
+        sidebarPanel(
+          # Add any parameters you want to customize here
+          sliderInput("size", "Line Size", min = 1, max = 5, value = 1.5)
+        ),
+        mainPanel(
+          plotOutput("linePlot")
+        )
+      )
+    ),
+    server = function(input, output) {
+      output$linePlot <- renderPlot({
+        # Generate sample data (replace with your own data)
+        data_line <- data.frame(x = 1:10, y = cumsum(rnorm(10)))
+
+        # Create custom line plot
+        customLinePlot(x = data_line$x, y = data_line$y, size = input$size)
+      })
+    }
+  )
+}
+
+# Run the gadgets
+customScatterGadget()
+customBarGadget()
+customLineGadget()

@@ -1,0 +1,9 @@
+# Overview
+
+`customGraphing` is an R package that empowers users to create customized scatter plots, bar plots, and line plots using the ggplot2 package. With interactive gadgets, you can explore and visualize your data effortlessly.
+
+## Installation
+
+You can install the package from GitHub using the `devtools` package:
+
+devtools::install_github("dmleib/customGraphing")

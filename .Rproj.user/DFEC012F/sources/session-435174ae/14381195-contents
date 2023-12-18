@@ -1,0 +1,45 @@
+#' @title Interactive Scatter Plot Gadget
+#' @description An interactive Shiny gadget for exploring relationships between two numeric variables.
+#'
+#' @param data A data frame containing the variables to be visualized.
+#' @param x The variable for the x-axis.
+#' @param y The variable for the y-axis.
+#' @param color The color of the points on the scatter plot.
+#' @param size The size of the points on the scatter plot.
+#'
+#' @return An interactive scatter plot.
+#' @export
+#' @examples
+#' # Run the Shiny gadget
+#' runShinyScatterPlotGadget(data = mtcars, x = "mpg", y = "wt")
+shinyScatterPlotGadget <- function(data, x, y, color = "steelblue", size = 3) {
+  library(shiny)
+
+  # Shiny UI
+  ui <- fluidPage(
+    titlePanel("Interactive Scatter Plot"),
+    sidebarLayout(
+      sidebarPanel(
+        selectInput("xvar", "X-axis Variable", choices = names(data)),
+        selectInput("yvar", "Y-axis Variable", choices = names(data)),
+        selectInput("color", "Point Color", choices = c("blue", "red", "green")),
+        sliderInput("size", "Point Size", min = 1, max = 10, value = 3)
+      ),
+      mainPanel(
+        plotOutput("scatterPlot")
+      )
+    )
+  )
+
+  # Shiny Server
+  server <- function(input, output) {
+    output$scatterPlot <- renderPlot({
+      ggplot(data, aes_string(x = input$xvar, y = input$yvar)) +
+        geom_point(color = input$color, size = input$size) +
+        theme_minimal()
+    })
+  }
+
+  # Run the Shiny app
+  shinyApp(ui, server)
+}

@@ -1,0 +1,26 @@
+#' Bar Plot with Default Options
+#' Create a bar plot with default options.
+#'
+#' @param data Data frame.
+#' @param x x-axis variable.
+#' @param y y-axis variable.
+#'
+#' @return ggplot object.
+#'
+#' @details
+#' This function creates a bar plot with default fill color.
+#'
+#' @examples
+#' data <- data.frame(
+#'   x = c("A", "B", "C"),
+#'   y = c(10, 15, 20)
+#' )
+#' bar_plot(data, "x", "y")
+#'
+#' @export
+bar_plot <- function(data, x, y) {
+  ggplot(data, aes_string(x = x, y = y, fill = getOption("default_fill", "gray"))) +
+    geom_bar(stat = "identity") +
+    theme_minimal() +
+    scale_fill_manual(values = getOption("default_fill", "gray"))
+}

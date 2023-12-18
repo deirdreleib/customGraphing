@@ -1,0 +1,45 @@
+#' Interactive Shiny Gadget for Bar Plot
+#'
+#' This Shiny gadget allows users to interactively create a bar plot.
+#'
+#' @param data Data frame.
+#' @param x x-axis variable.
+#' @param y y-axis variable.
+#'
+#' @return A Shiny gadget.
+#'
+#' @export
+#' @importFrom shiny shinyApp
+#' @importFrom shinydashboard dashboardPage
+#' @importFrom shinydashboard dashboardHeader
+#' @importFrom shinydashboard dashboardSidebar
+#' @importFrom shinydashboard dashboardBody
+#' @importFrom shinydashboard tabItem
+#' @importFrom shinydashboard fluidRow
+#' @importFrom shinydashboard box
+#' @importFrom shinydashboard selectInput
+#' @importFrom shinydashboard plotOutput
+shiny_gadget_bar_plot <- function(data, x, y) {
+  shinyApp(
+    ui = dashboardPage(
+      header = dashboardHeader(title = "Bar Plot Gadget"),
+      sidebar = dashboardSidebar(
+        selectInput("x_var", "X-axis Variable", choices = colnames(data), selected = x),
+        selectInput("y_var", "Y-axis Variable", choices = colnames(data), selected = y)
+      ),
+      body = dashboardBody(
+        tabItem(
+          tabName = "plot",
+          fluidRow(
+            box(title = "Bar Plot", plotOutput("bar_plot"))
+          )
+        )
+      )
+    ),
+    server = function(input, output) {
+      output$bar_plot <- renderPlot({
+        bar_plot(data, input$x_var, input$y_var)
+      })
+    }
+  )
+}

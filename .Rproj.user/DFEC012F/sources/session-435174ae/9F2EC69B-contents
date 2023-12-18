@@ -1,0 +1,86 @@
+library(shiny)
+library(ggplot2)
+
+# Define the custom scatter plot function
+customScatterPlot <- function(x, y, color = "steelblue", size = 3) {
+  ggplot2::ggplot(data = data.frame(x, y), aes(x = x, y = y)) +
+    geom_point(color = color, size = size) +
+    theme_minimal() +
+    labs(title = "Custom Scatter Plot",
+         x = "X-axis Label",
+         y = "Y-axis Label")
+}
+
+# Define the custom bar plot function
+customBarPlot <- function(x, y, fill = "darkgreen") {
+  ggplot2::ggplot(data = data.frame(x, y), aes(x = x, y = y)) +
+    geom_bar(stat = "identity", fill = fill) +
+    theme_minimal() +
+    labs(title = "Custom Bar Plot",
+         x = "X-axis Label",
+         y = "Y-axis Label")
+}
+
+# Define the custom line plot function
+customLinePlot <- function(x, y, color = "darkred", size = 1.5) {
+  ggplot2::ggplot(data = data.frame(x, y), aes(x = x, y = y)) +
+    geom_line(color = color, size = size) +
+    theme_minimal() +
+    labs(title = "Custom Line Plot",
+         x = "X-axis Label",
+         y = "Y-axis Label")
+}
+
+# Define the Shiny gadget UI
+ui <- fluidPage(
+  titlePanel("Custom Plot Shiny Gadget"),
+  tabsetPanel(
+    tabPanel("Scatter Plot", 
+             fluidRow(
+               column(4, numericInput("sizeInput", "Point Size:", value = 3, min = 1, max = 10)),
+               column(4, textInput("colorInput", "Point Color:", value = "steelblue")),
+               column(4, actionButton("scatterButton", "Generate Scatter Plot"))
+             ),
+             plotOutput("scatterPlot")
+    ),
+    tabPanel("Bar Plot", 
+             fluidRow(
+               column(4, textInput("fillInput", "Bar Fill Color:", value = "darkgreen")),
+               column(4, actionButton("barButton", "Generate Bar Plot"))
+             ),
+             plotOutput("barPlot")
+    ),
+    tabPanel("Line Plot", 
+             fluidRow(
+               column(4, numericInput("sizeInputLine", "Line Size:", value = 1.5, min = 1, max = 5)),
+               column(4, textInput("colorInputLine", "Line Color:", value = "darkred")),
+               column(4, actionButton("lineButton", "Generate Line Plot"))
+             ),
+             plotOutput("linePlot")
+    )
+  )
+)
+
+# Define the Shiny gadget server
+server <- function(input, output, session) {
+  observeEvent(input$scatterButton, {
+    output$scatterPlot <- renderPlot({
+      customScatterPlot(data$X, data$Y, color = input$colorInput, size = input$sizeInput)
+    })
+  })
+  
+  observeEvent(input$barButton, {
+    output$barPlot <- renderPlot({
+      customBarPlot(data$Category, data$Value, fill = input$fillInput)
+    })
+  })
+  
+  observeEvent(input$lineButton, {
+    output$linePlot <- renderPlot({
+      customLinePlot(data$X, data$Y, color = input$colorInputLine, size = input$sizeInputLine)
+    })
+  })
+}
+
+# Run the Shiny gadget
+shinyApp(ui, server)

@@ -1,0 +1,15 @@
+#' Custom Line Plot
+#'
+#' @param data Data frame
+#' @param x x-axis variable
+#' @param y y-axis variable
+#' @param color Line color
+#' @param line_type Type of line (e.g., "solid", "dashed")
+#'
+#' @return ggplot object
+#' @export
+line_graph <- function(data, x, y, color = "blue", line_type = "solid") {
+  ggplot(data, aes_string(x = x, y = y, color = color)) +
+    geom_line(linetype = line_type) +
+    theme_minimal()
+}

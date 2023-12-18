@@ -1,0 +1,31 @@
+#' Box Plot 1
+#'
+#' @param data Data frame
+#' @param x x-axis variable
+#' @param y y-axis variable
+#' @param color Box outline color
+#' @param fill Box fill color
+#' @param alpha Transparency of the fill color (0 to 1)
+#' @import ggplot2
+#'
+#' @return ggplot object
+#'
+#' @examples
+#' # Example 1: Default box plot
+#' data <- data.frame(
+#'   category = rep(c("A", "B", "C"), each = 30),
+#'   value = rnorm(90)
+#' )
+#' box_plot1(data, "category", "value")
+#'
+#' # Example 2: Customized box plot with red outline and green fill
+#' box_plot1(data, "category", "value", color = "red", fill = "green", alpha = 0.5)
+#'
+#' @export
+box_plot1 <- function(data, x, y, outline_color = "darkblue", fill = "lightgray", alpha = 0.7) {
+  ggplot(data, aes_string(x = x, y = y, fill = fill)) +
+    geom_boxplot(aes(color = outline_color), alpha = alpha, outlier.shape = 16, outlier.size = 3) +
+    theme_minimal() +
+    scale_color_manual(values = outline_color) +
+    scale_fill_manual(values = fill)
+}

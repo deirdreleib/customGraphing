@@ -1,0 +1,69 @@
+---
+title: "Custom Plotting R Package Vignette"
+output: 
+  html_document:
+    toc: true
+---
+
+# Custom Plotting R Package
+
+## Motivation
+
+The Custom Plotting R Package aims to streamline the process of creating customized scatter plots, bar plots, and line plots using the popular ggplot2 library. The motivation behind this package is to empower data analysts and researchers with a simple yet flexible tool for crafting visually compelling visualizations.
+
+## Installation
+
+To use this package, you can install it directly from GitHub using the `devtools` package:
+
+```{r}
+devtools::install_github("dmleib/customGraphing")
+```
+
+Replace "your_username" and "your_package_name" with your actual GitHub username and the repository name.
+
+## Custom Scatter Plot
+
+The `customScatterPlot` function creates a scatter plot with customizable colors and point sizes.
+
+```{r}
+# Sample Data
+set.seed(123)
+data <- data.frame(x = rnorm(100), y = rnorm(100))
+
+# Create a custom scatter plot
+customScatterPlot(x = data$x, y = data$y, color = "steelblue", size = 4)
+```
+
+## Custom Bar Plot
+
+The `customBarPlot` function generates a bar plot to visualize the distribution of a numeric variable across different categories.
+
+```{r}
+# Sample Data
+data_bar <- data.frame(category = letters[1:5], value = c(3, 7, 2, 5, 9))
+
+# Create a custom bar plot
+customBarPlot(x = data_bar$category, y = data_bar$value, fill = "darkgreen")
+```
+
+## Custom Line Plot
+
+The `customLinePlot` function produces a line plot suitable for visualizing trends or patterns in a numeric variable over a continuous range.
+
+```{r}
+# Sample Data
+data_line <- data.frame(x = 1:10, y = cumsum(rnorm(10)))
+
+# Create a custom line plot
+customLinePlot(x = data_line$x, y = data_line$y, color = "darkred", size = 1.5)
+```
+
+## Future Work
+
+While the current version of the package provides essential functionality, there are opportunities for future improvements:
+
+1. **Additional Plot Types:** Expand the package to support more plot types, such as histograms or boxplots.
+2. **Interactive Gadgets:** Enhance Shiny gadgets to provide users with more interactive features for real-time exploration.
+3. **Customization Options:** Introduce additional customization options for users to control various plot parameters easily.
+
+Feel free to contribute, provide feedback, or suggest new features for the continuous improvement of this package!
