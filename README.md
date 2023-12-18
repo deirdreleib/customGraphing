@@ -110,5 +110,3 @@ To use this package, install it from GitHub using the `devtools` package:
 ```R
 devtools::install_github("dmleib/customGraphing")
 ```
-
-Replace "your_username" and "your_package_name" with your GitHub username and the name of the repository containing the package.
