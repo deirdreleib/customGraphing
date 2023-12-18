@@ -3,7 +3,7 @@
     "path": "~/Downloads/BioStats 581/R package/customGraphing/Vignette.Rmd",
     "project_path": "Vignette.Rmd",
     "type": "r_markdown",
-    "hash": "3409079298",
+    "hash": "636121362",
     "contents": "",
     "dirty": false,
     "created": 1702846628677.0,
@@ -13,15 +13,16 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "23,25",
-        "scrollLine": "20"
+        "cursorPosition": "102,22",
+        "scrollLine": "94",
+        "last_setup_crc32": "435174ae8ba033fa"
     },
     "folds": "",
-    "lastKnownWriteTime": 1702863323,
+    "lastKnownWriteTime": 1702865314,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1702863323204,
+    "last_content_update": 1702865314402,
     "read_only": false,
     "read_only_alternatives": []
 }

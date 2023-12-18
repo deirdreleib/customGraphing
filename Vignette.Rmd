@@ -5,6 +5,14 @@ output:
     toc: true
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+if (!requireNamespace("shiny", quietly = TRUE)) {
+  install.packages("shiny")
+}
+library(shiny)
+```
+
 # Custom Plotting R Package
 
 ## Motivation
@@ -17,15 +25,36 @@ To use this package, you can install it directly from GitHub using the `devtools
 
 ```{r}
 devtools::install_github("deirdreleib/customGraphing")
+library(customGraphing)
+library(ggplot2)
+library(shiny)
 ```
 
-```{r, False}
-# Sample Sales Data
+```{r}
+# Sample Sales Data - scatter plot and bar plot
 sales_data <- data.frame(
   month = factor(month.abb[1:12], levels = month.abb),
   sales = c(120, 150, 200, 180, 250, 300, 280, 320, 400, 380, 450, 500),
   expenses = c(80, 90, 100, 120, 150, 180, 160, 200, 220, 250, 280, 300),
   profit = c(40, 60, 100, 60, 100, 120, 120, 120, 180, 130, 170, 200)
+)
+
+# Sample data
+set.seed(123)
+data <- data.frame(x = rnorm(100), y = rnorm(100))
+
+# Sample data_bar
+data_bar <- data.frame(category = letters[1:5], value = c(3, 7, 2, 5, 9))
+
+# Sample data_line
+data_line <- data.frame(x = 1:10, y = cumsum(rnorm(10)))
+
+# Generate Sample Data for Line Plot
+set.seed(456)
+time_points <- seq(from = as.POSIXct("2023-01-01"), by = "1 day", length.out = 30)
+temperature_data <- data.frame(
+  date = time_points,
+  temperature = cumsum(rnorm(30, mean = 0, sd = 2))
 )
 
 ```
@@ -58,17 +87,23 @@ customBarPlot(x = sales_data$month, y = sales_data$profit) +
 The `customLinePlot` function produces a line plot suitable for visualizing trends or patterns in a numeric variable over a continuous range.
 
 ```{r}
-# Generate Sample Data for Line Plot
-set.seed(456)
-time_points <- seq(from = as.POSIXct("2023-01-01"), by = "1 day", length.out = 30)
-temperature_data <- data.frame(
-  date = time_points,
-  temperature = cumsum(rnorm(30, mean = 0, sd = 2))
-)
-
 # Custom Line Plot Example with Temperature Data
 customLinePlot(x = temperature_data$date, y = temperature_data$temperature, color = "darkblue", size = 1.5) +
   labs(title = "Temperature Variation Over Time", x = "Date", y = "Temperature (°C)")
+
+```
+
+## Shiny Gadgets
+
+```{r}
+# Scatter Plot Gadget
+scatterPlotGadget(data)
+
+# Bar Plot Gadget
+barPlotGadget(data_bar)
+
+# Line Plot Gadget
+linePlotGadget(data_line)
 
 ```
 

@@ -3,7 +3,7 @@
     "path": "~/Downloads/BioStats 581/R package/customGraphing/R/app.R",
     "project_path": "R/app.R",
     "type": "r_source",
-    "hash": "351585387",
+    "hash": "0",
     "contents": "",
     "dirty": false,
     "created": 1702838733549.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "100,1",
-        "scrollLine": "17"
+        "cursorPosition": "104,27",
+        "scrollLine": "93"
     },
     "folds": "",
-    "lastKnownWriteTime": 1702863323,
+    "lastKnownWriteTime": 1702864625,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1702863323191,
+    "last_content_update": 1702864625329,
     "read_only": false,
     "read_only_alternatives": []
 }

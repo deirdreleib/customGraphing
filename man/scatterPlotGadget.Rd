@@ -4,10 +4,10 @@
 \alias{scatterPlotGadget}
 \title{Custom Scatter Plot Gadget}
 \usage{
-scatterPlotGadget(data)
+scatterPlotGadget(sales_data)
 }
 \arguments{
-\item{data}{A data frame with numeric columns 'x' and 'y'.}
+\item{sales_data}{A data frame with numeric columns 'x' and 'y'.}
 }
 \value{
 A Shiny application for custom scatter plot.

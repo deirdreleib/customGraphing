@@ -2,11 +2,11 @@
 #'
 #' This Shiny gadget allows users to create a custom scatter plot using ggplot2.
 #'
-#' @param data A data frame with numeric columns 'x' and 'y'.
+#' @param sales_data A data frame with numeric columns 'x' and 'y'.
 #'
 #' @return A Shiny application for custom scatter plot.
 #' @export
-scatterPlotGadget <- function(data) {
+scatterPlotGadget <- function(sales_data) {
   # UI Definition
   ui <- fluidPage(
     titlePanel("Custom Scatter Plot Gadget"),
