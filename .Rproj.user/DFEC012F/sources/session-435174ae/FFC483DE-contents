@@ -102,5 +102,5 @@ linePlotGadget <- function(data_line) {
 
 # Example usage:
 # scatterPlotGadget(data)
-# barPlotGadget(data_bar)
+# barPlotGadget(sales_data)
 # linePlotGadget(data_line)

@@ -16,22 +16,30 @@ The Custom Plotting R Package aims to streamline the process of creating customi
 To use this package, you can install it directly from GitHub using the `devtools` package:
 
 ```{r}
-devtools::install_github("dmleib/customGraphing")
+devtools::install_github("deirdreleib/customGraphing")
 ```
 
-Replace "your_username" and "your_package_name" with your actual GitHub username and the repository name.
+```{r, False}
+# Sample Sales Data
+sales_data <- data.frame(
+  month = factor(month.abb[1:12], levels = month.abb),
+  sales = c(120, 150, 200, 180, 250, 300, 280, 320, 400, 380, 450, 500),
+  expenses = c(80, 90, 100, 120, 150, 180, 160, 200, 220, 250, 280, 300),
+  profit = c(40, 60, 100, 60, 100, 120, 120, 120, 180, 130, 170, 200)
+)
+
+```
+
 
 ## Custom Scatter Plot
 
 The `customScatterPlot` function creates a scatter plot with customizable colors and point sizes.
 
 ```{r}
-# Sample Data
-set.seed(123)
-data <- data.frame(x = rnorm(100), y = rnorm(100))
+# Custom Scatter Plot Example
+customScatterPlot(x = sales_data$sales, y = sales_data$expenses) +
+  labs(title = "Sales vs. Expenses", x = "Sales (in thousands)", y = "Expenses (in thousands)")
 
-# Create a custom scatter plot
-customScatterPlot(x = data$x, y = data$y, color = "steelblue", size = 4)
 ```
 
 ## Custom Bar Plot
@@ -39,11 +47,10 @@ customScatterPlot(x = data$x, y = data$y, color = "steelblue", size = 4)
 The `customBarPlot` function generates a bar plot to visualize the distribution of a numeric variable across different categories.
 
 ```{r}
-# Sample Data
-data_bar <- data.frame(category = letters[1:5], value = c(3, 7, 2, 5, 9))
+# Custom Bar Plot Example
+customBarPlot(x = sales_data$month, y = sales_data$profit) +
+  labs(title = "Monthly Profit", x = "Month", y = "Profit (in thousands)")
 
-# Create a custom bar plot
-customBarPlot(x = data_bar$category, y = data_bar$value, fill = "darkgreen")
 ```
 
 ## Custom Line Plot
@@ -51,11 +58,18 @@ customBarPlot(x = data_bar$category, y = data_bar$value, fill = "darkgreen")
 The `customLinePlot` function produces a line plot suitable for visualizing trends or patterns in a numeric variable over a continuous range.
 
 ```{r}
-# Sample Data
-data_line <- data.frame(x = 1:10, y = cumsum(rnorm(10)))
+# Generate Sample Data for Line Plot
+set.seed(456)
+time_points <- seq(from = as.POSIXct("2023-01-01"), by = "1 day", length.out = 30)
+temperature_data <- data.frame(
+  date = time_points,
+  temperature = cumsum(rnorm(30, mean = 0, sd = 2))
+)
 
-# Create a custom line plot
-customLinePlot(x = data_line$x, y = data_line$y, color = "darkred", size = 1.5)
+# Custom Line Plot Example with Temperature Data
+customLinePlot(x = temperature_data$date, y = temperature_data$temperature, color = "darkblue", size = 1.5) +
+  labs(title = "Temperature Variation Over Time", x = "Date", y = "Temperature (°C)")
+
 ```
 
 ## Future Work

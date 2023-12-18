@@ -1,9 +1,9 @@
-Package: customGraph
+Package: customGraphing
 Type: Package
 Title: Custom Graphing Package
 Version: 0.1.0
 Author: Deirdre Leib
-Maintainer: Deirdre Leib <dmleib@iu.edu>
+Maintainer: Deirdre Leib <deirdrem1026@gmail.com>
 Description: The customGraphing package provides a collection of functions for 
     creating customized scatter plots, bar plots, and line plots using the 
     ggplot2 package. It is designed to enhance data visualization capabilities 
