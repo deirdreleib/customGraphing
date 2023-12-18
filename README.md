@@ -108,5 +108,8 @@ linePlotGadget(data_line)
 To use this package, install it from GitHub using the `devtools` package:
 
 ```R
-devtools::install_github("dmleib/customGraphing")
+devtools::install_github("deirdreleib/customGraphing")
+library(customGraphing)
+library(ggplot2)
+library(shiny)
 ```
